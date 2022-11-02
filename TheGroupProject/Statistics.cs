@@ -66,6 +66,7 @@ namespace TheGroupProject
         {
             //Marcus
 
+            if (source == null || source.Length == 0) { IfNull(); }
             //Sorterar listan från minst till högst
             Array.Sort(Statistics.source);
 
@@ -77,11 +78,14 @@ namespace TheGroupProject
 
             //Returnerar result
             return result;
+
+
         }
 
         public static int Minimum()
         {
             // Rasmus
+            if (source == null || source.Length == 0) { IfNull(); }
 
             Array.Sort(Statistics.source);
 
@@ -94,30 +98,35 @@ namespace TheGroupProject
         {
             // Alexander
 
-            Statistics.source = source;
+            if (source == null || source.Length == 0) { IfNull(); }
+            Array.Sort(Statistics.source);
             //Jämnar upp så det blir med en decimal
             double total = -88;
 
+            //Hämtar värdet 
             for (int i = 0; i < source.LongLength; i++)
             {
                 total += source[i];
             }
+            //Returnerar värdet och delar det så man får ut medelvärdet
+
             return total / source.LongLength;
         }
 
         public static double Median()
         {
             // Alexander
-
-            //Sorterar arrayen
-            Array.Sort(source);
+            if (source == null || source.Length == 0) { IfNull(); }
+            //Sorterar listan
+            Array.Sort(Statistics.source);
 
             int size = source.Length;
-            //Tar talet som är i mitten av filen
+            //Delar i två så man får det tal som är i mitten
             int mid = size / 2;
 
             int dbl = source[mid];
-            //Och returnerar det
+            //Och returnerar värdet så det skrivs ut
+
             return dbl;
         }
 
@@ -125,7 +134,7 @@ namespace TheGroupProject
         {
             // Rasmus
             // Vi upplevde beräkning av "typvärde" som väldigt svår. Så här hjälptes vi alla åt.
-
+            if (source == null || source.Length == 0) { IfNull(); }
             int mode = source.GroupBy(n => n).
             OrderByDescending(g => g.Count()).
             Select(g => g.Key).FirstOrDefault();
@@ -147,7 +156,7 @@ namespace TheGroupProject
         public static int Range()
         {
             // Marcus 
-
+            if (source == null || source.Length == 0) { IfNull(); }
             //Sorterar listan minst till högst
             Array.Sort(Statistics.source);
 
@@ -170,7 +179,7 @@ namespace TheGroupProject
         public static double StandardDeviation() 
         {
             // Mohammed 
-
+            if (source == null || source.Length == 0) { IfNull(); }
             double average = source.Average();
             double sumOfSquaresOfDifferences = source.Select(val => (val - average) * (val - average)).Sum();
             double sd = Math.Sqrt(sumOfSquaresOfDifferences / source.Length);
